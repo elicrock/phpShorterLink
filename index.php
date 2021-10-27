@@ -1,10 +1,10 @@
-<?php include "includes/header.php"; ?>
+<?php include_once "includes/functions.php"; ?>
 <?php
 if(isset($_GET['url']) && !empty($_GET['url'])) {
 	$url = strtolower(trim($_GET['url']));
 	$link = db_query("SELECT * FROM `links` WHERE `short_link` = '$url';")->fetch();
 	if(empty($link)) {
-		echo "Такая ссылка не найдена!";
+		header('Location: ' . HOST . '/404.php');
 		die;
 	}
 	
@@ -13,6 +13,7 @@ if(isset($_GET['url']) && !empty($_GET['url'])) {
 	die;
 }
 ?>
+<?php include_once "includes/header.php"; ?>
 <main class="container">
 	<div class="row mt-5">
 		<div class="col">
